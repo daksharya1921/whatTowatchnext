@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Preconnect to external origins -->
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="dns-prefetch" href="https://image.tmdb.org" />
+
+    <!-- Preload hero image (LCP) -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=75" fetchpriority="high" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>WhatToWatchNext — AI-Powered Movie & Series Insights</title>
+    <meta name="description" content="Deep-parsing audience sentiment for movies, web series, and anime through the lens of modern AI." />
+    <meta name="author" content="WhatToWatchNext" />
+
+    <meta property="og:title" content="WhatToWatchNext" />
+    <meta property="og:description" content="Deep-parsing audience sentiment for movies, web series, and anime through the lens of modern AI." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

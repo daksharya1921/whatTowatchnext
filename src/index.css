@@ -1,0 +1,343 @@
+/* Self-hosted fonts — served from /assets, no cross-origin request */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/400-italic.css';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/poppins/800.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════
+   DARK MODE (default)
+   ═══════════════════════════════════════════ */
+:root,
+[data-theme="dark"] {
+  --void:         #000000;
+  --deep:         #0f0f0f;
+  --surface:      #141414;
+  --lift:         #1a1a1a;
+  --border:       rgba(255, 255, 255, 0.1);
+  --border-hi:    rgba(255, 255, 255, 0.2);
+  --gold:         #e50914;      /* Mapped to Red */
+  --gold-hi:      #ff0a16;
+  --gold-lo:      #b20710;
+  --gold-text:    #ffffff;
+  --gold-muted:   #8c141a;
+  --gold-bright:  #ff0a16;
+  --cream:        #ffffff;
+  --cream-main:   #ffffff;
+  --cream-60:     #b3b3b3;
+  --cream-30:     #808080;
+  --cream-12:     #333333;
+  --cream-06:     #1a1a1a;
+  --red:          #e50914;
+  --green:        #46d369;
+
+  --theme-bg:      #0f0f0f;
+  --theme-surface: #141414;
+  --theme-text:    #ffffff;
+  --theme-muted:   #b3b3b3;
+
+  --background: 0 0% 6%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 8%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 357 93% 47%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 70%;
+  --accent: 357 93% 47%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 357 93% 47%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 0 0% 20%;
+  --ring: 357 93% 47%;
+  --radius: 0.25rem;
+}
+
+/* ═══════════════════════════════════════════
+   MID-DARK MODE
+   ═══════════════════════════════════════════ */
+[data-theme="mid-dark"] {
+  --void:         #1a1a28;
+  --deep:         #202030;
+  --surface:      #252530;
+  --lift:         #2e2e3c;
+  --border:       rgba(201, 144, 58, 0.14);
+  --border-hi:    rgba(201, 144, 58, 0.30);
+  --cream:        #e4dcc8;
+  --cream-main:   #e4dcc8;
+  --cream-60:     rgba(228, 220, 200, 0.6);
+  --cream-30:     rgba(228, 220, 200, 0.3);
+  --cream-12:     rgba(228, 220, 200, 0.12);
+  --cream-06:     rgba(228, 220, 200, 0.06);
+
+  --theme-bg:      #1a1a28;
+  --theme-surface: #252530;
+  --theme-text:    #e4dcc8;
+  --theme-muted:   rgba(228, 220, 200, 0.45);
+
+  --background: 240 22% 13%;
+  --foreground: 38 28% 84%;
+  --card: 240 18% 16%;
+  --card-foreground: 38 28% 84%;
+  --popover: 240 18% 16%;
+  --popover-foreground: 38 28% 84%;
+  --primary: 36 58% 50%;
+  --primary-foreground: 240 22% 13%;
+  --secondary: 240 14% 18%;
+  --secondary-foreground: 38 28% 84%;
+  --muted: 240 14% 18%;
+  --muted-foreground: 38 12% 48%;
+  --accent: 36 58% 28%;
+  --accent-foreground: 38 28% 84%;
+  --destructive: 5 70% 42%;
+  --destructive-foreground: 38 28% 84%;
+  --input: 240 14% 20%;
+  --ring: 36 58% 50%;
+}
+
+/* ═══════════════════════════════════════════
+   LIGHT MODE
+   ═══════════════════════════════════════════ */
+[data-theme="light"] {
+  --void:         #fffdf8;
+  --deep:         #f5f0e8;
+  --surface:      #ffffff;
+  --lift:         #faf6ef;
+  --border:       rgba(120, 80, 30, 0.13);
+  --border-hi:    rgba(120, 80, 30, 0.30);
+  --gold:         #a06e1a;
+  --gold-hi:      #b88024;
+  --gold-lo:      #7a5818;
+  --gold-text:    #6e4a10;
+  --gold-muted:   #8c6018;
+  --gold-bright:  #b88024;
+  --cream:        #2a1e10;
+  --cream-main:   #2a1e10;
+  --cream-60:     rgba(42, 30, 16, 0.6);
+  --cream-30:     rgba(42, 30, 16, 0.3);
+  --cream-12:     rgba(42, 30, 16, 0.12);
+  --cream-06:     rgba(42, 30, 16, 0.06);
+  --red:          #c03020;
+  --green:        #2a7040;
+
+  --theme-bg:      #fffdf8;
+  --theme-surface: #ffffff;
+  --theme-text:    #2a1e10;
+  --theme-muted:   rgba(42, 30, 16, 0.48);
+
+  --background: 40 100% 98%;
+  --foreground: 28 45% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 28 45% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 28 45% 12%;
+  --primary: 36 72% 37%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 38 22% 92%;
+  --secondary-foreground: 28 45% 12%;
+  --muted: 38 22% 92%;
+  --muted-foreground: 28 14% 38%;
+  --accent: 36 58% 30%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 5 70% 42%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 38 22% 86%;
+  --ring: 36 72% 37%;
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--theme-bg);
+  color: var(--theme-text);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* ═══════════════════════════════════════════
+   ATMOSPHERIC LAYERS
+   ═══════════════════════════════════════════ */
+.grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 900;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+  opacity: 0.3;
+}
+
+.dot-grid {
+  display: none; /* Removed for sleek UI */
+}
+
+.bg-glow {
+  position: fixed; top: -50%; left: 50%; transform: translateX(-50%);
+  width: 1400px; height: 1000px; pointer-events: none; z-index: 2;
+  background: radial-gradient(ellipse, rgba(229,9,20,0.06) 0%, transparent 60%);
+}
+
+.vignette {
+  position: fixed; inset: 0; pointer-events: none; z-index: 3;
+  background: radial-gradient(ellipse 100% 100% at 50% 0%, transparent 50%, rgba(0,0,0,0.85) 100%);
+}
+
+/* Light mode: soften atmospheric overlays */
+[data-theme="light"] .grain   { opacity: 0.15; mix-blend-mode: multiply; }
+[data-theme="light"] .dot-grid { opacity: 0.4; }
+[data-theme="light"] .bg-glow  { opacity: 0.3; }
+[data-theme="light"] .vignette { background: radial-gradient(ellipse 100% 100% at 50% 0%, transparent 50%, rgba(255,253,248,0.5) 100%); }
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════ */
+.f-display { font-family: 'Poppins', sans-serif; font-weight: 700; }
+.f-serif   { font-family: 'Inter', sans-serif; }
+.f-mono    { font-family: 'Inter', sans-serif; }
+
+.lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--theme-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ═══════════════════════════════════════════
+   PANEL / GLASS CARD
+   ═══════════════════════════════════════════ */
+.panel {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.panel:hover {
+  border-color: var(--border-hi);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.panel > * { position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════════
+   CORNER BRACKETS (L-shapes for key sections)
+   ═══════════════════════════════════════════ */
+.corner-brackets {
+  position: relative;
+}
+.corner-brackets::before,
+.corner-brackets::after,
+.corner-brackets > .cb-bl,
+.corner-brackets > .cb-br {
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: var(--border-hi);
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.3s ease;
+}
+.corner-brackets::before {
+  content: ''; top: 0; left: 0;
+  border-top: 1px solid; border-left: 1px solid;
+  border-color: inherit;
+  border-color: var(--border-hi);
+}
+.corner-brackets::after {
+  content: ''; top: 0; right: 0;
+  border-top: 1px solid; border-right: 1px solid;
+  border-color: var(--border-hi);
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════ */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+@keyframes shimmer  { 0%,100% { opacity:0.25; } 50% { opacity:0.8; } }
+
+.anim-up   { animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+.d1 { animation-delay: 0.06s; }
+.d2 { animation-delay: 0.12s; }
+.d3 { animation-delay: 0.20s; }
+.d4 { animation-delay: 0.30s; }
+.d5 { animation-delay: 0.40s; }
+.anim-in   { animation: fadeIn 0.5s ease both; }
+.anim-shim { animation: shimmer 2.4s ease-in-out infinite; }
+
+/* Pulsing scan-line dots */
+@keyframes scanPulse {
+  0%, 80%, 100% { opacity: 0.15; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1.2); }
+}
+.scan-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.scan-dots span {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold-hi);
+  animation: scanPulse 1.4s ease-in-out infinite;
+}
+.scan-dots span:nth-child(2) { animation-delay: 0.2s; }
+.scan-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Skeleton shimmer */
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--cream-06) 25%,
+    rgba(240, 230, 208, 0.12) 50%,
+    var(--cream-06) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLLBAR & SELECTION
+   ═══════════════════════════════════════════ */
+::-webkit-scrollbar       { width: 3px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--gold-lo); }
+::selection { background: rgba(201,144,58,0.22); color: var(--cream); }
+
+/* ═══════════════════════════════════════════
+   HOVER GOLD MICRO-INTERACTION
+   ═══════════════════════════════════════════ */
+.hover-gold {
+  transition: color 0.15s ease;
+}
+.hover-gold:hover {
+  color: var(--gold-text) !important;
+}

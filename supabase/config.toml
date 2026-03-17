@@ -1,0 +1,13 @@
+project_id = "tijshtkrtsjjczwqybre"
+
+[functions.analyze-movie]
+verify_jwt = false
+
+[functions.trending-movies]
+verify_jwt = false
+
+[functions.similar-movies]
+verify_jwt = false
+
+[functions.mood-recommendations]
+verify_jwt = false
