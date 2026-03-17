@@ -141,8 +141,9 @@ export default function Compare() {
       if (fnError) throw new Error(fnError.message);
       if (fnData.error) throw new Error(fnData.error);
       setData(fnData);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const error = err as Error;
+      setError(error.message);
     } finally {
       setLoading(false);
     }

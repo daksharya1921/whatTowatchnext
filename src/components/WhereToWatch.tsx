@@ -110,7 +110,7 @@ export default function WhereToWatch({ providers, movieTitle, imdbId, selectedRe
         provider_name: providerName,
         region: selectedRegion,
         user_id: user?.id || null,
-      } as any);
+      });
     } catch (err) {
       console.error('Click tracking failed:', err);
     }

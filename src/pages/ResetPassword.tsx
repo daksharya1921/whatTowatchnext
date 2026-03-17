@@ -43,8 +43,9 @@ export default function ResetPassword() {
       if (error) throw error;
       toast.success('Password updated! Redirecting…');
       setTimeout(() => navigate('/'), 1500);
-    } catch (err: any) {
-      toast.error(err.message);
+    } catch (err: unknown) {
+      const error = err as Error;
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }

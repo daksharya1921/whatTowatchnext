@@ -2,6 +2,19 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, Film, Loader2, Tv } from 'lucide-react';
 
+interface TmdbMovieResult {
+  title?: string;
+  name?: string;
+  release_date?: string;
+  first_air_date?: string;
+  id: number;
+  poster_path?: string | null;
+  vote_average?: number;
+  genre_ids?: number[];
+  media_type?: string;
+  origin_country?: string[];
+}
+
 interface TrendingItem {
   title: string;
   year: string;
@@ -52,7 +65,7 @@ export default function TrendingMovies({ onSelect }: TrendingMoviesProps) {
         );
         const data = await res.json();
         if (data.results) {
-          const mapped: TrendingItem[] = data.results.slice(0, 10).map((m: any) => {
+          const mapped: TrendingItem[] = data.results.slice(0, 10).map((m: TmdbMovieResult) => {
             const isJp = (m.origin_country || []).includes('JP');
             const isAnimation = (m.genre_ids || []).includes(16);
             return {

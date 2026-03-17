@@ -89,8 +89,9 @@ export default function MovieDetail() {
           poster_url: fnData.movie.poster,
         });
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const error = err as Error;
+      setError(error.message);
     } finally {
       setLoading(false);
     }

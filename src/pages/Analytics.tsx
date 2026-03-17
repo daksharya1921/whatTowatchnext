@@ -28,7 +28,7 @@ const BRAND_SHADES = [
   '#EF4444', // Red-500
 ];
 
-function StatCard({ icon: Icon, label, value }: { icon: any; label: string; value: string | number }) {
+function StatCard({ icon: Icon, label, value }: { icon: React.ElementType; label: string; value: string | number }) {
   return (
     <div className="bg-[#2A2A2A] border border-[var(--border)] rounded-xl p-6 space-y-3">
       <div className="flex items-center gap-3">

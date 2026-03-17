@@ -4,6 +4,17 @@ import { Film, Layers, Tv } from 'lucide-react';
 import ScrollableRow from '@/components/ScrollableRow';
 import { supabase } from '@/integrations/supabase/client';
 
+interface TmdbSimilarResult {
+  title?: string;
+  name?: string;
+  release_date?: string;
+  first_air_date?: string;
+  poster_path?: string | null;
+  vote_average?: number;
+  genre_ids?: number[];
+  media_type?: string;
+}
+
 const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w300';
 
 const GENRE_MAP: Record<number, string> = {
@@ -41,7 +52,7 @@ export default function RelatedMovies({ imdbId, mediaType, onSelect }: RelatedMo
       .invoke('similar-movies', { body: { imdb_id: imdbId, media_type: mediaType } })
       .then(({ data }) => {
         if (data?.results) {
-          const mapped: SimilarItem[] = data.results.slice(0, 8).map((m: any) => ({
+          const mapped: SimilarItem[] = data.results.slice(0, 8).map((m: TmdbSimilarResult) => ({
             title: m.title || m.name,
             year: (m.release_date || m.first_air_date)?.split('-')[0] || 'N/A',
             poster: m.poster_path ? `${TMDB_IMAGE_BASE}${m.poster_path}` : null,

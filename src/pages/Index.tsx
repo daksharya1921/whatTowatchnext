@@ -37,7 +37,7 @@ export default function Index() {
       setPlaceholderIndex((prev) => (prev + 1) % PLACEHOLDER_TEXTS.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [PLACEHOLDER_TEXTS.length]);
 
   const handleSearch = (query: string) => {
     navigate(`/movie/${encodeURIComponent(query)}`);

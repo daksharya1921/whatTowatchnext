@@ -50,8 +50,9 @@ export default function Auth() {
       await signIn(email, password);
       toast.success('Welcome back!');
       navigate('/');
-    } catch (err: any) {
-      toast.error(err.message || 'Login failed. Please check your credentials.');
+    } catch (err: unknown) {
+      const error = err as Error;
+      toast.error(error.message || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }
@@ -72,8 +73,9 @@ export default function Auth() {
 
       toast.success('We sent a 6-digit code to your email.');
       setStep('verify');
-    } catch (err: any) {
-      toast.error(err.message || 'Signup failed. Please try again.');
+    } catch (err: unknown) {
+      const error = err as Error;
+      toast.error(error.message || 'Signup failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -125,8 +127,9 @@ export default function Auth() {
       if (error) throw error;
       toast.success('Email verified! Let\'s set up your profile.');
       setStep('onboarding');
-    } catch (err: any) {
-      toast.error(err.message || 'Invalid or expired code. Please try again.');
+    } catch (err: unknown) {
+      const error = err as Error;
+      toast.error(error.message || 'Invalid or expired code. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -141,8 +144,9 @@ export default function Auth() {
       });
       if (error) throw error;
       toast.success('New code sent! Check your email.');
-    } catch (err: any) {
-      toast.error(err.message || 'Failed to resend code.');
+    } catch (err: unknown) {
+      const error = err as Error;
+      toast.error(error.message || 'Failed to resend code.');
     }
   };
 
@@ -198,8 +202,9 @@ export default function Auth() {
       if (error) throw error;
       toast.success('Profile set up! Enjoy WhatToWatchNext.');
       navigate('/');
-    } catch (err: any) {
-      toast.error(err.message || 'Failed to save profile. Please try again.');
+    } catch (err: unknown) {
+      const error = err as Error;
+      toast.error(error.message || 'Failed to save profile. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -217,8 +222,9 @@ export default function Auth() {
         redirect_uri: window.location.origin,
       });
       if (error) throw error;
-    } catch (err: any) {
-      toast.error(err.message || 'Failed to sign in with Google. Please try again.');
+    } catch (err: unknown) {
+      const error = err as Error;
+      toast.error(error.message || 'Failed to sign in with Google. Please try again.');
     }
   };
 
@@ -321,7 +327,10 @@ export default function Auth() {
                             });
                             if (error) throw error;
                             toast.success('Password reset link sent! Check your email.');
-                          } catch (err: any) { toast.error(err.message); }
+                          } catch (err: unknown) { 
+                            const error = err as Error;
+                            toast.error(error.message); 
+                          }
                         }}
                         className="text-[var(--gold-text)] text-[10px] uppercase tracking-widest hover:text-[var(--gold-hi)] transition-colors"
                       >
@@ -538,7 +547,9 @@ export default function Auth() {
                           .update({ onboarding_complete: true })
                           .eq('user_id', user.id);
                       }
-                    } catch {}
+                    } catch (e) {
+                      console.error("Failed to skip onboarding", e);
+                    }
                     navigate('/');
                   }}
                   className="text-gray-500 text-sm font-medium hover:text-white transition-colors"
