@@ -1,23 +1,40 @@
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
 import "./index.css";
 import StartupError from "./components/StartupError";
 
-const rootElement = document.getElementById("root");
+/**
+ * Robust initialization that catches top-level errors in dependencies
+ * by using dynamic imports.
+ */
+async function init() {
+  const rootElement = document.getElementById("root");
+  if (!rootElement) {
+    console.error("Critical: 'root' element not found in DOM.");
+    return;
+  }
 
-if (!rootElement) {
-  console.error("Critical: 'root' element not found in DOM.");
-} else {
+  const root = createRoot(rootElement);
+
   try {
+    // 1. Check for basic configuration
     const isConfigMissing = !import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
     
     if (isConfigMissing) {
-      createRoot(rootElement).render(<StartupError message="Missing Supabase environment variables." />);
-    } else {
-      createRoot(rootElement).render(<App />);
+      console.warn("Supabase configuration is missing. Showing error screen.");
+      root.render(<StartupError message="Missing Supabase environment variables in the production environment." />);
+      return;
     }
+
+    // 2. Dynamic import App to catch any top-level errors in dependencies
+    // (like failing library initializations or missing ESM bundles)
+    const { default: App } = await import("./App");
+    root.render(<App />);
+    
+    console.log("Application mounted successfully.");
   } catch (error) {
-    console.error("Application failed to mount:", error);
-    createRoot(rootElement).render(<StartupError error={error as Error} />);
+    console.error("Critical Startup Error:", error);
+    root.render(<StartupError error={error as Error} />);
   }
 }
+
+init();
