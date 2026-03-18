@@ -58,7 +58,7 @@ export default function PlotRecommendations({ title, plot, genre, year, mediaTyp
     };
 
     fetchRecommendations();
-  }, [title, plot, genre, year, mediaType]);
+  }, [title, plot, genre, year, mediaType, imdbId]);
 
   if (!loading && movies.length === 0) return null;
 

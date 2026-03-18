@@ -50,7 +50,7 @@ function PersonMoviesRow({ personName, role, label, excludeTitle }: PersonMovies
     };
 
     fetchMovies();
-  }, [personName, role]);
+  }, [personName, role, excludeTitle]);
 
   if (!loading && movies.length === 0) return null;
 

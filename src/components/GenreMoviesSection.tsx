@@ -71,7 +71,7 @@ export default function GenreMoviesSection({ genre, mediaType, excludeId, exclud
     };
 
     fetchMovies();
-  }, [genre, mediaType, excludeId]);
+  }, [genre, mediaType, excludeId, excludeTitle]);
 
   if (!loading && movies.length === 0) return null;
 
