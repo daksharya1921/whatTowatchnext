@@ -2,6 +2,24 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import StartupError from "./components/StartupError";
 
+// Immediate global error catching
+window.onerror = function(msg, url, line, col, error) {
+  console.error("Window Error:", msg, error);
+  const root = document.getElementById("root");
+  if (root) {
+    createRoot(root).render(<StartupError message={String(msg)} error={error} />);
+  }
+  return false;
+};
+
+window.onunhandledrejection = function(event) {
+  console.error("Unhandled Rejection:", event.reason);
+  const root = document.getElementById("root");
+  if (root) {
+    createRoot(root).render(<StartupError message="Unhandled Rejection" error={event.reason} />);
+  }
+};
+
 /**
  * Robust initialization that catches top-level errors in dependencies
  * by using dynamic imports.
