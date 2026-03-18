@@ -27,11 +27,14 @@ describe('useOnboardingCheck', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useNavigate as any).mockReturnValue(mockNavigate);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useLocation as any).mockReturnValue(mockLocation);
   });
 
   it('does nothing if loading is true', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useAuth as any).mockReturnValue({ user: null, loading: true });
     renderHook(() => useOnboardingCheck());
     expect(supabase.from).not.toHaveBeenCalled();
@@ -39,6 +42,7 @@ describe('useOnboardingCheck', () => {
   });
 
   it('does nothing if user is null', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useAuth as any).mockReturnValue({ user: null, loading: false });
     renderHook(() => useOnboardingCheck());
     expect(supabase.from).not.toHaveBeenCalled();
@@ -46,15 +50,19 @@ describe('useOnboardingCheck', () => {
   });
 
   it('skips check if on auth-related path', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useAuth as any).mockReturnValue({ user: { id: '123' }, loading: false });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useLocation as any).mockReturnValue({ pathname: '/auth' });
     renderHook(() => useOnboardingCheck());
     expect(supabase.from).not.toHaveBeenCalled();
   });
 
   it('redirects to onboarding if profile exists and onboarding_complete is false', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useAuth as any).mockReturnValue({ user: { id: '123' }, loading: false });
     const mockMaybeSingle = vi.fn().mockResolvedValue({ data: { onboarding_complete: false } });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (supabase.from as any).mockReturnValue({
       select: vi.fn().mockReturnValue({
         eq: vi.fn().mockReturnValue({
@@ -71,8 +79,10 @@ describe('useOnboardingCheck', () => {
   });
 
   it('does not redirect if profile exists and onboarding_complete is true', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useAuth as any).mockReturnValue({ user: { id: '123' }, loading: false });
     const mockMaybeSingle = vi.fn().mockResolvedValue({ data: { onboarding_complete: true } });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (supabase.from as any).mockReturnValue({
       select: vi.fn().mockReturnValue({
         eq: vi.fn().mockReturnValue({

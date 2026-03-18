@@ -6,11 +6,16 @@ import type { MovieData } from './MovieCard';
 // Mock framer-motion to avoid animation issues in tests
 vi.mock('framer-motion', () => ({
   motion: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     a: ({ children, ...props }: any) => <a {...props}>{children}</a>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     button: ({ children, ...props }: any) => <button {...props}>{children}</button>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     span: ({ children, ...props }: any) => <span {...props}>{children}</span>,
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   AnimatePresence: ({ children }: any) => children,
 }));
 
