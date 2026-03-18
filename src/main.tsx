@@ -1,3 +1,7 @@
+// @ts-ignore
+alert("Script Initialization Started");
+document.body.style.backgroundColor = "purple"; // Visible even if React fails
+
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import StartupError from "./components/StartupError";
