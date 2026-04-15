@@ -44,15 +44,15 @@ export default function QuickPick({ onSelect }: QuickPickProps) {
         onClick={roll}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="flex items-center gap-2 bg-primary/15 text-primary border border-primary/30 px-5 py-3 rounded-xl font-bold text-sm hover:bg-primary/25 transition-colors backdrop-blur-sm"
+        className="flex items-center gap-2 bg-card/60 backdrop-blur-md text-foreground border border-border px-5 py-3 rounded-xl font-bold text-sm hover:border-primary/30 transition-all"
       >
         <motion.span
           animate={rolling ? { rotate: [0, 360] } : {}}
           transition={rolling ? { duration: 0.3, repeat: Infinity, ease: 'linear' } : {}}
         >
-          {rolling ? <Loader2 className="w-4 h-4" /> : <Dices className="w-4 h-4" />}
+          {rolling ? <Loader2 className="w-4 h-4 text-primary" /> : <Dices className="w-4 h-4 text-muted-foreground" />}
         </motion.span>
-        Quick Pick
+        <span className="text-muted-foreground">Quick Pick</span>
       </motion.button>
 
       <AnimatePresence mode="wait">
@@ -64,7 +64,7 @@ export default function QuickPick({ onSelect }: QuickPickProps) {
             exit={{ opacity: 0, x: 10, scale: 0.9 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             onClick={() => onSelect(currentPick)}
-            className="flex items-center gap-2 bg-card/80 backdrop-blur-md border border-border px-4 py-2.5 rounded-xl text-sm text-foreground font-medium hover:border-primary/50 transition-colors group"
+            className="flex items-center gap-2 bg-card/60 backdrop-blur-md border border-primary/30 px-4 py-2.5 rounded-xl text-sm font-medium transition-all group hover:border-primary/60"
           >
             <span className="text-primary font-bold">{currentPick}</span>
             <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
