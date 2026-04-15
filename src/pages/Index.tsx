@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import cinescopeLogo from '@/assets/whattowatch-logo.png';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Search, Sparkles, TrendingUp, Clock, Star } from 'lucide-react';
 import UserMenu from '@/components/UserMenu';
 import WhatToWatch from '@/components/WhatToWatch';
@@ -15,7 +14,6 @@ import { useOnboardingCheck } from '@/hooks/useOnboardingCheck';
 
 export default function Index() {
   const navigate = useNavigate();
-  const [selectedGenre, setSelectedGenre] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
   useOnboardingCheck();
@@ -43,9 +41,6 @@ export default function Index() {
     navigate(`/movie/${encodeURIComponent(query)}`);
   };
 
-  const GENRES = [
-    'All', 'Action', 'Comedy', 'Drama', 'Sci-Fi', 'Horror', 'Romance', 'Thriller', 'Animation', 'Documentary'
-  ];
 
   return (
     <motion.div 
@@ -185,22 +180,6 @@ export default function Index() {
 
         {/* Discovery Sections */}
         <main className="max-w-7xl mx-auto px-6 xl:px-12 pb-20 -mt-20 relative z-20">
-          {/* Genre Filter Bar */}
-          <div className="flex items-center gap-3 overflow-x-auto pb-8 no-scrollbar">
-            {GENRES.map((genre) => (
-              <button
-                key={genre}
-                onClick={() => setSelectedGenre(genre)}
-                className={`px-5 py-2 rounded-full whitespace-nowrap text-sm font-bold transition-all duration-300 border ${
-                  selectedGenre === genre
-                    ? 'bg-foreground text-background border-foreground'
-                    : 'bg-background/40 text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground'
-                }`}
-              >
-                {genre}
-              </button>
-            ))}
-          </div>
 
           <RecentlySearched onSelect={handleSearch} />
           <MoodPicker onSelect={handleSearch} />
