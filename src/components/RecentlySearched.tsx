@@ -49,39 +49,42 @@ export default function RecentlySearched({ onSelect }: RecentlySearchedProps) {
     <motion.section
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2.5 mb-5">
         <Clock className="w-5 h-5 text-primary" />
-        <h2 className="text-lg font-bold text-foreground">Recently Searched</h2>
+        <h2 className="text-lg font-bold text-foreground tracking-tight">Recently Searched</h2>
       </div>
 
-      <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
+      <div className="flex gap-3.5 overflow-x-auto pb-3 no-scrollbar">
         <AnimatePresence>
-          {searches.map((s) => (
+          {searches.map((s, idx) => (
             <motion.button
               key={s.id}
               layout
-              exit={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.85 }}
+              transition={{ delay: idx * 0.05 }}
               onClick={() => onSelect(s.movie_title || s.query)}
-              className="group relative flex-shrink-0 w-32 rounded-lg overflow-hidden bg-card border border-border hover:border-primary/50 transition-colors"
+              className="group relative flex-shrink-0 w-[130px] rounded-xl overflow-hidden bg-card border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
             >
               <button
                 onClick={(e) => { e.stopPropagation(); remove(s.id); }}
-                className="absolute top-1 right-1 z-10 p-1 rounded-full bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute top-1.5 right-1.5 z-10 p-1 rounded-full bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
               >
                 <X className="w-3 h-3 text-muted-foreground" />
               </button>
               {s.poster_url && s.poster_url !== 'N/A' ? (
-                <img src={s.poster_url} alt={s.movie_title || s.query} className="w-full h-44 object-cover" />
+                <img src={s.poster_url} alt={s.movie_title || s.query} className="w-full h-[180px] object-cover transition-transform duration-500 group-hover:scale-105" />
               ) : (
-                <div className="w-full h-44 bg-muted flex items-center justify-center text-muted-foreground text-xs">No Poster</div>
+                <div className="w-full h-[180px] bg-muted flex items-center justify-center text-muted-foreground text-xs">No Poster</div>
               )}
-              <div className="p-2">
+              <div className="p-2.5">
                 <p className="text-xs font-semibold text-foreground truncate">{s.movie_title || s.query}</p>
                 <div className="flex items-center justify-between mt-1">
                   {s.movie_year && <span className="text-[10px] text-muted-foreground">{s.movie_year}</span>}
-                  {s.imdb_rating && s.imdb_rating !== 'N/A' && <span className="text-[10px] text-yellow-400">⭐ {s.imdb_rating}</span>}
+                  {s.imdb_rating && s.imdb_rating !== 'N/A' && <span className="text-[10px] text-amber-400 font-medium">⭐ {s.imdb_rating}</span>}
                 </div>
               </div>
             </motion.button>

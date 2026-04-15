@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search, Sparkles, TrendingUp, Clock, Star } from 'lucide-react';
+import { Search, Sparkles, TrendingUp, Clock, Star, Film, Play } from 'lucide-react';
 import UserMenu from '@/components/UserMenu';
 import WhatToWatch from '@/components/WhatToWatch';
 import TrendingMovies from '@/components/TrendingMovies';
@@ -41,67 +41,77 @@ export default function Index() {
     navigate(`/movie/${encodeURIComponent(query)}`);
   };
 
-
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="relative min-h-screen bg-[var(--background)]"
+      className="relative min-h-screen bg-background"
     >
       <div className="relative z-10">
         <UserMenu />
 
-        {/* Hero Section */}
-         <header className="relative w-full h-[85vh] min-h-[600px] flex items-center">
+        {/* ── Hero Section ── */}
+        <header className="relative w-full min-h-[90vh] flex items-center overflow-hidden">
+          {/* Background image + overlays */}
           <div className="absolute inset-0 z-0">
-            <img 
-              src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=75" 
-              alt="Featured Movie" 
-              className="w-full h-full object-cover"
+            <img
+              src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=75"
+              alt="Cinema atmosphere"
+              className="w-full h-full object-cover scale-105"
               fetchPriority="high"
               loading="eager"
               decoding="async"
             />
-
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-[var(--background)]/50 to-transparent" />
+            {/* Layered cinematic gradients */}
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/40 to-transparent h-32" />
+            {/* Ambient glow */}
+            <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
           </div>
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 xl:px-12 mt-20">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 xl:px-12 pt-32 pb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-2xl"
             >
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="flex items-center gap-3 mb-4"
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="flex items-center gap-3 mb-6"
               >
-                <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-md uppercase tracking-wider animate-pulse">
-                  🔥 Trending
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/15 text-primary text-xs font-bold rounded-full border border-primary/30 backdrop-blur-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  TRENDING
                 </span>
-                <span className="text-foreground/80 text-sm font-semibold tracking-wide">
+                <span className="text-muted-foreground text-sm font-medium tracking-wide">
                   #1 in Movies Today
                 </span>
               </motion.div>
-              <h1 className="text-5xl md:text-7xl font-display font-bold text-foreground leading-tight mb-2">
+
+              {/* Title */}
+              <h1 className="font-display text-[clamp(2.8rem,6vw,5rem)] font-bold text-foreground leading-[1.05] mb-4 tracking-tight">
                 What To Watch
-                <span className="block text-primary">Next?</span>
+                <span className="block bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
+                  Next?
+                </span>
               </h1>
-              <p className="text-muted-foreground text-lg mb-8 leading-relaxed line-clamp-3 max-w-xl">
+
+              <p className="text-muted-foreground text-base md:text-lg mb-10 leading-relaxed max-w-lg">
                 AI-powered movie & series recommendations. Search any title for deep analysis, or let us pick your next obsession.
               </p>
 
-              {/* Animated Search Bar */}
+              {/* Search Bar */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
+                transition={{ delay: 0.4, duration: 0.7 }}
                 className="mb-8"
               >
                 <form
@@ -112,26 +122,26 @@ export default function Index() {
                   className="relative group"
                 >
                   <motion.div
-                    animate={{ 
-                      boxShadow: searchFocused 
-                        ? '0 0 30px hsl(var(--primary) / 0.3)' 
-                        : '0 0 0px transparent' 
+                    animate={{
+                      boxShadow: searchFocused
+                        ? '0 0 0 1px hsl(var(--primary) / 0.4), 0 8px 40px -8px hsl(var(--primary) / 0.2)'
+                        : '0 0 0 1px hsl(var(--border)), 0 4px 20px -4px rgba(0,0,0,0.3)',
                     }}
-                    className="relative rounded-xl overflow-hidden"
+                    className="relative rounded-2xl overflow-hidden backdrop-blur-xl"
                   >
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground z-10" />
+                    <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground z-10 transition-colors group-focus-within:text-primary" />
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       onFocus={() => setSearchFocused(true)}
                       onBlur={() => setSearchFocused(false)}
-                      className="w-full bg-card/80 backdrop-blur-xl border border-border text-foreground pl-12 pr-28 py-4 text-base focus:border-primary focus:outline-none transition-all placeholder-muted-foreground rounded-xl"
+                      className="w-full bg-card/60 backdrop-blur-2xl border-0 text-foreground pl-14 pr-32 py-5 text-base focus:outline-none transition-all placeholder:text-muted-foreground/60 rounded-2xl"
                       placeholder={PLACEHOLDER_TEXTS[placeholderIndex]}
                     />
                     <button
                       type="submit"
-                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground px-5 py-2 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity flex items-center gap-2"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground px-6 py-2.5 rounded-xl font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2 shadow-lg shadow-primary/20"
                     >
                       <Sparkles className="w-4 h-4" />
                       Analyze
@@ -145,78 +155,96 @@ export default function Index() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="flex items-center gap-6 flex-wrap"
+                className="flex items-center gap-5 flex-wrap mb-8"
               >
                 {[
-                  { icon: TrendingUp, label: 'Trending Now', color: 'text-green-400' },
-                  { icon: Star, label: 'AI Insights', color: 'text-yellow-400' },
-                  { icon: Clock, label: 'Updated Daily', color: 'text-blue-400' },
-                ].map(({ icon: Icon, label, color }) => (
-                  <div key={label} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Icon className={`w-4 h-4 ${color}`} />
+                  { icon: TrendingUp, label: 'Trending Now' },
+                  { icon: Sparkles, label: 'AI Insights' },
+                  { icon: Clock, label: 'Updated Daily' },
+                ].map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center gap-2 text-sm text-muted-foreground/80">
+                    <Icon className="w-3.5 h-3.5 text-primary/70" />
                     <span>{label}</span>
                   </div>
                 ))}
               </motion.div>
-              
-              <div className="flex items-center gap-4 mt-6 flex-wrap">
-                <Link to="/watchlist" className="flex items-center gap-2 bg-foreground text-background px-8 py-3 rounded-md font-bold hover:opacity-80 transition-opacity">
-                  <Star className="w-5 h-5" />
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="flex items-center gap-3 flex-wrap"
+              >
+                <Link
+                  to="/watchlist"
+                  className="group flex items-center gap-2.5 bg-primary text-primary-foreground px-7 py-3.5 rounded-xl font-bold text-sm hover:brightness-110 transition-all shadow-lg shadow-primary/20"
+                >
+                  <Play className="w-4 h-4 transition-transform group-hover:scale-110" />
                   My Watchlist
                 </Link>
-                <Link to="/compare" className="flex items-center gap-2 bg-muted text-foreground backdrop-blur-md px-8 py-3 rounded-md font-bold hover:bg-muted/80 transition-colors">
-                  <TrendingUp className="w-5 h-5" />
+                <Link
+                  to="/compare"
+                  className="flex items-center gap-2.5 bg-card/60 backdrop-blur-md text-foreground border border-border px-7 py-3.5 rounded-xl font-bold text-sm hover:bg-card hover:border-primary/30 transition-all"
+                >
+                  <Film className="w-4 h-4 text-muted-foreground" />
                   Compare
                 </Link>
-              </div>
-              
+              </motion.div>
+
               {/* Quick Pick */}
-              <div className="mt-6">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.9 }}
+                className="mt-8"
+              >
                 <QuickPick onSelect={handleSearch} />
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </header>
 
-        {/* Discovery Sections */}
-        <main className="max-w-7xl mx-auto px-6 xl:px-12 pb-20 -mt-20 relative z-20">
-
+        {/* ── Discovery Sections ── */}
+        <main className="max-w-7xl mx-auto px-6 xl:px-12 pb-24 space-y-14 relative z-20">
           <RecentlySearched onSelect={handleSearch} />
           <MoodPicker onSelect={handleSearch} />
 
-          <div className="space-y-16">
+          <div className="space-y-14">
             <motion.div
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.6 }}
             >
               <WhatToWatch onSelect={handleSearch} />
             </motion.div>
             <motion.div
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
               <TrendingMovies onSelect={handleSearch} />
             </motion.div>
           </div>
         </main>
 
-        {/* About */}
-        <section className="max-w-4xl mx-auto px-6 py-20 border-t border-[var(--border)] corner-brackets">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+        {/* ── About ── */}
+        <section className="relative max-w-5xl mx-auto px-6 py-24">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+          <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
-              <span className="lbl mb-4 block">
+              <span className="lbl mb-5 block">
                 <span className="scan-dots mr-2"><span></span><span></span><span></span></span>
                 About
               </span>
-              <h2 className="font-display text-3xl md:text-4xl text-[var(--cream)] leading-tight">
-                Your personal guide to <em className="italic">what's worth watching.</em>
+              <h2 className="font-display text-3xl md:text-4xl text-foreground leading-tight">
+                Your personal guide to{' '}
+                <em className="italic text-primary">what's worth watching.</em>
               </h2>
             </div>
-            <div className="space-y-4 text-[var(--cream-60)] font-serif text-base md:text-lg leading-relaxed">
+            <div className="space-y-5 text-muted-foreground text-base md:text-lg leading-relaxed">
               <p>
                 WhatToWatchNext uses AI-driven sentiment analysis to cut through the noise — parsing thousands of audience reviews to surface what truly resonates with viewers.
               </p>
