@@ -162,7 +162,7 @@ export default function Auth() {
   const handleResendOtp = async () => {
     try {
       const { error } = await supabase.auth.resend({
-        type: isLogin ? 'magiclink' : 'signup',
+        type: isLogin ? 'email' : 'signup',
         email,
       });
       if (error) throw error;

@@ -14,7 +14,6 @@ import { useOnboardingCheck } from '@/hooks/useOnboardingCheck';
 
 export default function Index() {
   const navigate = useNavigate();
-  const [selectedGenre, setSelectedGenre] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
   useOnboardingCheck();
