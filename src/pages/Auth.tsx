@@ -162,7 +162,7 @@ export default function Auth() {
   const handleResendOtp = async () => {
     try {
       const { error } = await supabase.auth.resend({
-        type: isLogin ? 'email_change' : 'signup',
+        type: 'signup',
         email,
       });
       if (error) throw error;
