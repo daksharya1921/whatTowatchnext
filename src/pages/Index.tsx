@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import cinescopeLogo from '@/assets/whattowatch-logo.png';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Search, Sparkles, TrendingUp, Clock, Star } from 'lucide-react';
 import UserMenu from '@/components/UserMenu';
 import WhatToWatch from '@/components/WhatToWatch';
