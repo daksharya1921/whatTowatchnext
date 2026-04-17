@@ -9,6 +9,7 @@ import QuickPick from '@/components/QuickPick';
 import ScrollToTop from '@/components/ScrollToTop';
 import RecentlySearched from '@/components/RecentlySearched';
 import MoodPicker from '@/components/MoodPicker';
+import PersonalGreeting from '@/components/PersonalGreeting';
 import Footer from '@/components/Footer';
 import { useOnboardingCheck } from '@/hooks/useOnboardingCheck';
 
