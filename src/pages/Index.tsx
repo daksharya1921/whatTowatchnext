@@ -211,6 +211,7 @@ export default function Index() {
         {/* ── Discovery Sections ── */}
         <main className="max-w-7xl mx-auto px-6 xl:px-12 pb-24 space-y-14 relative z-20">
           <RecentlySearched onSelect={handleSearch} />
+          <PickedForYou onSelect={handleSearch} />
           <MoodPicker onSelect={handleSearch} />
 
           <div className="space-y-14">
