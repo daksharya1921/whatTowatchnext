@@ -10,6 +10,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 import RecentlySearched from '@/components/RecentlySearched';
 import MoodPicker from '@/components/MoodPicker';
 import PersonalGreeting from '@/components/PersonalGreeting';
+import PickedForYou from '@/components/PickedForYou';
 import Footer from '@/components/Footer';
 import { useOnboardingCheck } from '@/hooks/useOnboardingCheck';
 
