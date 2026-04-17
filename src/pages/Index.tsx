@@ -9,6 +9,7 @@ import QuickPick from '@/components/QuickPick';
 import ScrollToTop from '@/components/ScrollToTop';
 import RecentlySearched from '@/components/RecentlySearched';
 import MoodPicker from '@/components/MoodPicker';
+import PersonalGreeting from '@/components/PersonalGreeting';
 import Footer from '@/components/Footer';
 import { useOnboardingCheck } from '@/hooks/useOnboardingCheck';
 
@@ -96,6 +97,7 @@ export default function Index() {
               </motion.div>
 
               {/* Title */}
+              <PersonalGreeting />
               <h1 className="font-display text-[clamp(2.8rem,6vw,5rem)] font-bold text-foreground leading-[1.05] mb-4 tracking-tight">
                 What To Watch
                 <span className="block bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
